@@ -30,7 +30,7 @@ def main():
         #Percentage change function; %? 
         def percentage_change(data):
             absolute_change =  data[0] - data[1]
-            percentage = 100 * (data[0 - data[1]])/data[1]
+            percentage = 100 * (data[0] - data[1])/data[1]
             percentage = round(percentage, 2)
             return percentage
 
@@ -66,9 +66,7 @@ def main():
 
             #Populate subplot
             plt.subplot(1, len(stock_list), stock_list.index(stock)+1) 
-            plt.suptitle("date: {}".format(today), fontsize=15)
-            plt.show()
-
+    
         plt.suptitle("Past 5 trading days, up til {}".format(today), fontsize=15)
         plt.show()
 
