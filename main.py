@@ -61,7 +61,7 @@ def main():
                      color=color(data))
     
             plt.ylabel("Price ($)", fontsize=12)
-            plt.xlabel("date", fontsize=12)
+            plt.xlabel("{} intervals".format(timeInterval), fontsize=12)
             plt.legend(["{}: $%.2f".format(stock)%current_price],fontsize=14)
 
             #Populate subplot
