@@ -7,9 +7,8 @@ from datetime import datetime
 
 def main():
 
-    def stock_retrieval():
+    def stock_retrieval(stock_list):
 
-        stock_list = ["NIO", "XPEV", "F", "TSLA"]
         today = datetime.today()
         today = today.strftime("%B %d, %Y")
         timePeriod = "5d" #1d, 5d, 1mo, 3mo, 1y, 2y, ytd, max
@@ -73,4 +72,6 @@ def main():
     stock_retrieval()
 
 if __name__ == '__main__':
-    main()
+    stock_list = ["NIO", "XPEV", "F", "TSLA"]
+    stock_retrieval(stock_list)
+    
