@@ -40,6 +40,23 @@ class Retrieval:
         percentage = round(percentage, 2)
         return percentage
 
+    def plotting(self, stock):
+        data=yf.download(stock, period=self.timePeriod, interval=self.timeInterval)
+        data=data["Close"]
+        current_price=round(data[0], 2)
+
+        plt.plot(data, color=self.color(data), linewidth='2.5')
+        plt.grid()
+        plt.title(label="{}{}%".format(self.percentage_sign(data), self.percentage_change(data)),
+        fontsize=16,
+        color=self.color(data))
+
+        plt.ylabel("Price ($)", fontsize=12)
+        plt.xlabel("{} intervals".format(self.timeInterval), fontsize=12)
+        plt.legend(["{}: $%.2f".format(stock)%current_price], fontsize=14)
+
+        plt.subplot(1, self.num_of_columns, stock_list.index(stock)+1)
+
     def extract_stock_data(self, stock_list, time_interval, time_period):
 
         self.num_of_columns = len(stock_list)
@@ -51,22 +68,8 @@ class Retrieval:
         fig.set_figwidth(15)
 
         for stock in stock_list:
-            data = yf.download(stock, period=self.timePeriod, interval=self.timeInterval)
-            data = data["Close"]
-            current_price = round(data[0], 2)
-
-            plt.plot(data, color = self.color(data), linewidth = '2.5')
-            plt.grid()
-            plt.title(label="{}{}%".format(self.percentage_sign(data), self.percentage_change(data)), 
-            fontsize=16, 
-            color=self.color(data))
-
-            plt.ylabel("Price ($)", fontsize=12)
-            plt.xlabel("{} intervals".format(self.timeInterval), fontsize=12)
-            plt.legend(["{}: $%.2f".format(stock)%current_price], fontsize=14)
-
-            plt.subplot(1, self.num_of_columns, stock_list.index(stock)+1)
-
+            self.plotting(stock)
+            
         plt.suptitle("Past 5 trading days, up til {}".format(self.formatted_date()),fontsize=15)
         plt.show()
 
