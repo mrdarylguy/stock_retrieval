@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 import yfinance as yf
 from datetime import datetime
 
@@ -54,8 +55,8 @@ class Retrieval:
         plt.ylabel("Price ($)", fontsize=12)
         plt.xlabel("{} intervals".format(self.timeInterval), fontsize=12)
         plt.legend(["{}: $%.2f".format(stock)%current_price], fontsize=14)
-
         plt.subplot(1, self.num_of_columns, stock_list.index(stock)+1)
+        plt.xticks(rotation=45)
 
     def extract_stock_data(self, stock_list, time_interval, time_period):
 
@@ -66,10 +67,11 @@ class Retrieval:
         fig, ax = plt.subplots(self.num_of_rows, self.num_of_columns)
         fig.subplots_adjust(wspace=0.3)
         fig.set_figwidth(15)
+    
 
         for stock in stock_list:
             self.plotting(stock)
-            
+
         plt.suptitle("Past 5 trading days, up til {}".format(self.formatted_date()),fontsize=15)
         plt.show()
 
