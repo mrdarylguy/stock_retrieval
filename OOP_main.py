@@ -5,11 +5,12 @@ from datetime import datetime
 
 class Retrieval:
     def __init__(self):
-        self.timeInterval = "15m"
-        self.timePeriod = "5d"
+        self.timeInterval = None
+        self.timePeriod = None
         self.date = datetime.today()
         self.num_of_rows = 1
-        self.num_of_columns = 0  
+        self.num_of_columns = 0
+        self.output_path = None  
 
     def formatted_date(self):
         today = self.date
@@ -19,10 +20,8 @@ class Retrieval:
     def color(self, data):
         if data[0] - data[1] > 0:
             return "green"
-
         elif data[0] - data[1] < 0:
             return "red"
-
         elif data[0] == data[1]:
             return "black"
 
@@ -41,9 +40,12 @@ class Retrieval:
         percentage = round(percentage, 2)
         return percentage
 
-    def extract_stock_data(self, stock_list):
+    def extract_stock_data(self, stock_list, time_interval, time_period):
 
         self.num_of_columns = len(stock_list)
+        self.timeInterval = time_interval
+        self.timePeriod = time_period
+
         fig, ax = plt.subplots(self.num_of_rows, self.num_of_columns)
         fig.subplots_adjust(wspace=0.3)
         fig.set_figwidth(15)
@@ -72,4 +74,6 @@ if __name__ == '__main__':
 
     retrieval = Retrieval()
     stock_list = ["NIO", "XPEV", "F", "TSLA"]
-    retrieval.extract_stock_data(stock_list)
+    time_interval = '15m'
+    time_period = '5d'
+    retrieval.extract_stock_data(stock_list, time_interval, time_period)
