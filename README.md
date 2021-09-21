@@ -3,4 +3,4 @@
 
 -I progressively add in more features for processing and plotting, There's an OOP version of the main script.
 
-![Figure_1](https://user-images.githubusercontent.com/42925677/126869513-528781f5-75e1-4705-b9d0-0f7ceb49eb6f.png)
+![image](https://user-images.githubusercontent.com/42925677/134179973-45ee59bf-6f57-48ee-82fa-fbf0181bfbc4.png)
